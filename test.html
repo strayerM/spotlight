@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Windows Spotlight Images 演示</title>
+<style>
+body {
+	text-align:center;
+}
+img {
+	max-width:100%;
+}
+</style>
+</head>
+<body>
+</body>
+<script>
+if (screen.width > screen.height)
+	$drive=0;
+else
+	$drive=1;
+	
+var url = 'http://www.shijuewuyu.com/spotlight/img.php';
+var innerHTML = '';
+var xmlHttp  = new XMLHttpRequest();
+xmlHttp.open('get', url, true);
+xmlHttp.send();
+xmlHttp.onreadystatechange = function() {
+	if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+		var array =xmlHttp.responseText.split("\n");
+		for (var $i=0; $j=array[$i]; $i++) {
+			if ($i%2==$drive)
+			innerHTML += '<img src="' + $j + '" /><br />';
+		}
+		document.body.innerHTML = innerHTML;
+	}
+};
+</script>
+</html>
